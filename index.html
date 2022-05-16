@@ -3,25 +3,48 @@
     <head>
         <title> pftime </title>
         <meta charset=UTF-8>
-        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
         <script defer src="https://pyscript.net/alpha/pyscript.js"></script> 
     </head>
+    <style>
+        html {
+            font-family: sans-serif;
+            font-size: 95%;
+        }
+    </style>
     <body>
-    <b><p>Today is <u><label id='today'></label></u></p></b>
-    <br>
-    <div id="pi" class="alert alert-primary"></div>
-    <py-script>
-import datetime as dt
-pyscript.write('today', dt.date.today().strftime('%A %B %d, %Y'))
 
-def compute_pi(n):
-    pi = 2
-    for i in range(1,n):
-        pi *= 4 * i ** 2 / (4 * i ** 2 - 1)
-    return pi
+    <p id="loaded" style="
+        background-color: forestgreen;
+        color: white;
+        position: fixed; top: 0; right: 1rem;
+        border-radius: 5px;
+        padding: .3rem;
+        display: none;
+        ">
+        Loaded
+    </p>
 
-pi = compute_pi(100000)
-pyscript.write('pi', f'π is approximately {pi:.3f}')
-    </py-script>
+    <p id="pys-error" style="
+        position: fixed; bottom: 1rem; right: 1rem;
+        color: red;
+        border: 1px solid red;
+        padding: .5rem;
+        display: none;
+    ">
+    </p>
+
+    <label for="date"> Pick a date </label>
+    <input type="date" id="date">
+
+    <label for="fmt"> Format </label>
+    <input type="text" id="fmt">
+
+    <p id="explain"> **Explain fmt here like in regex101.com** </p>
+
+    <button id="a" pys-onclick="fmt_date"> Press </button>
+
+    <p id="result"> </p>
+    <py-script src="./main.py"> </py-script>
     </body>
 </html>
